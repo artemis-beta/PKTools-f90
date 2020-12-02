@@ -1,0 +1,18 @@
+name: PKTools FORTRAN
+on: [push]
+
+jobs:
+        build:
+                name: Run Ubuntu GFortran
+                runs-on: ubuntu-latest
+                steps:
+                        - uses: actions/checkout@v2
+
+                        - name: Build PKTools Examples
+                          run: |
+                               cmake -H. -Bbuild
+                               cmake --build build
+
+                        - name: Run Examples
+                          run: |
+                               ./build/addpkvars
